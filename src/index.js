@@ -12,8 +12,17 @@
 
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
-function returnFirstArgument() {
+
+function returnFirstArgument(d) {
+
+  return d;
+
 }
+
+let r = returnFirstArgument(5);
+
+console.log(r);
+
 
 /*
  Задание 2:
@@ -30,7 +39,14 @@ function returnFirstArgument() {
    sumWithDefaults(10) вернет 110
  */
 function sumWithDefaults(a, b) {
+  return a + b;
 }
+
+result = sumWithDefaults(66, 77);
+
+console.log(result);
+
+
 
 /*
  Задание 3:
@@ -41,8 +57,12 @@ function sumWithDefaults(a, b) {
    returnFnResult(() => 'привет') вернет 'привет'
  */
 function returnFnResult(fn) {
+
+  return fn();
+
 }
 
+console.log(returnFnResult(() => "hello"));
 /*
  Задание 4:
 
@@ -56,8 +76,22 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number) {
+
+
+function returnCounter(num) {
+ let counter = num;
+
+ return function() {
+   return ++counter;
+ }
 }
+
+var f = returnCounter(10);
+
+console.log(f());
+console.log(f());
+console.log(f());
+
 
 /*
  Задание 5 *:
@@ -68,8 +102,21 @@ function returnCounter(number) {
  Пример:
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
+ 
+
+
 function returnArgumentsArray() {
+  
+  const array = [];
+
+  for (let i = 0; i < argumnents.length; i++) {}
+    const curVal = arguments[i];
+    array.push(curVal);
+  }
+
+
 }
+
 
 /*
  Задание 6 *:
@@ -86,14 +133,25 @@ function returnArgumentsArray() {
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn) {
+function multiply(l, g) {
+  return l * g;
 }
 
-export {
-    returnFirstArgument,
-    sumWithDefaults,
-    returnArgumentsArray,
-    returnFnResult,
-    returnCounter,
-    bindFunction
+function bindFunction(fn, ...args) {
+  return function() {
+    return fn.apply(this, args);
+  }
 }
+
+var newSum = bindFunction(multiply, 2, 4);
+
+console.log(newSum());
+
+//  export {
+    // returnFirstArgument,
+    // sumWithDefaults,
+    // returnArgumentsArray,
+    // returnFnResult,
+    // returnCounter,
+    // bindFunction
+// }
