@@ -42,9 +42,9 @@ function sumWithDefaults(a, b) {
   return a + b;
 }
 
-result = sumWithDefaults(66, 77);
+res = sumWithDefaults(66, 77);
 
-console.log(result);
+console.log(res);
 
 
 
@@ -109,15 +109,17 @@ function returnArgumentsArray() {
   
   const array = [];
 
-  for (let i = 0; i < argumnents.length; i++) {}
+  for (let i = 0; i < arguments.length; i++) {
     const curVal = arguments[i];
     array.push(curVal);
   }
 
-
+  return array;
 }
 
+const result = returnArgumentsArray(1, 2, 3);
 
+console.log(result);
 /*
  Задание 6 *:
 
