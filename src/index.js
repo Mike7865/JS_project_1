@@ -66,11 +66,6 @@ console.log(returnFnResult(() => "hello"));
 function returnCounter(num = 0) {
  let counter = num;
 
- if (num === num) {
- } else {
-   num === 10;
- }
-
  return function() {
    return ++counter;
  }
