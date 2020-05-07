@@ -7,6 +7,15 @@
  Посмотрите как работает forEach и повторите это поведение для массива, который будет передан в параметре array
  */
 function forEach(array, fn) {
+  
+  let array = ['a', 'b', 'c'];
+
+  fn(array) {
+    console.log('a');
+    console.log('b');
+    console.log('c');
+  }
+
 }
 
 /*
@@ -16,6 +25,13 @@ function forEach(array, fn) {
  Посмотрите как работает map и повторите это поведение для массива, который будет передан в параметре array
  */
 function map(array, fn) {
+
+  var array = [4, 7, 8];
+  
+  fn (array) {
+    return array * 2;
+  }
+
 }
 
 /*
@@ -25,6 +41,13 @@ function map(array, fn) {
  Посмотрите как работает reduce и повторите это поведение для массива, который будет передан в параметре array
  */
 function reduce(array, fn, initial) {
+  var initial = [1, 2, 3, 4];
+
+  fn(array, initial) {
+    var array = 1 + 2 + 3 + 4;
+  }
+
+  console.log(array);
 }
 
 /*
@@ -45,6 +68,16 @@ function upperProps(obj) {
  Посмотрите как работает slice и повторите это поведение для массива, который будет передан в параметре array
  */
 function slice(array, from, to) {
+  var array = ["cat", "dog", "lion", "wasp"];
+
+  var from = array[1, 2];
+
+  var to = array[3, 4];
+
+  console.log(from);
+
+  console.log(to);
+
 }
 
 /*
