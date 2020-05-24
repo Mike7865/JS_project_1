@@ -21,12 +21,9 @@ function forEach(array, fn) {
  Посмотрите как работает map и повторите это поведение для массива, который будет передан в параметре array
  */
 function map(array, fn) {
-
   for (var i = 0; i < array.length; i++) {
-    fn (array[i]) 
+    fn (array[i], i, array)
   }
-
-
 }
 
 /*
@@ -37,8 +34,8 @@ function map(array, fn) {
  */
 function reduce(array, fn, initial) {
   
-  fn (initial, array) {
-    return initial + array;
+  for (var i = 0; i < array.length; i++) {
+    fn (initial, array[i], i, array)
   }
 
 }
@@ -52,6 +49,8 @@ function reduce(array, fn, initial) {
    upperProps({ name: 'Сергей', lastName: 'Петров' }) вернет ['NAME', 'LASTNAME']
  */
 function upperProps(obj) {
+
+  obj 
 }
 
 /*
@@ -62,6 +61,9 @@ function upperProps(obj) {
  */
 function slice(array, from, to) {
   
+  for (var i = 0; i < array.length; i++) {
+    fn (from, to)
+  }
 
 }
 
