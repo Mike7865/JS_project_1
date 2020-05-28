@@ -17,8 +17,22 @@
    isAllTrue([100, 2, 3, 4, 5], n => n < 10) // вернет false
  */
 function isAllTrue(array, fn) {
-}
 
+  
+
+  for (var i = 0; i < array.length; i++) {
+    var value = fn (array[i], i, array, array1);
+    var array1 = [];
+  }
+
+  if (value) {
+    return true;
+  } else {
+    return false;
+  } 
+  
+  
+}
 /*
  Задание 2:
 
@@ -36,6 +50,18 @@ function isAllTrue(array, fn) {
    isSomeTrue([1, 2, 3, 4, 5], n => n > 20) // вернет false
  */
 function isSomeTrue(array, fn) {
+  for (var i = 0; i < array.length; i++) {
+    var value1 = fn (array[i], i, array);
+
+  }
+
+  if (value1) {
+    return true;
+  } else {
+    return false;
+  }
+  
+  
 }
 
 /*
@@ -50,6 +76,13 @@ function isSomeTrue(array, fn) {
    - fn не является функцией (с текстом "fn is not a function")
  */
 function returnBadArguments(fn) {
+  fn ();
+  
+  
+
+  if (fn) {
+    return array2;
+  }
 }
 
 /*
