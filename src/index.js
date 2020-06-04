@@ -85,19 +85,21 @@ function isSomeTrue(array, fn) {
  3.3: Необходимо выбрасывать исключение в случаях:
    - fn не является функцией (с текстом "fn is not a function")
  */
-function returnBadArguments(fn) {
-  fn();
+function returnBadArguments(fn, ...rest) {
+    if (typeof fn !== "function") {
+      throw new Error("fn is not a function");
+    }
+    let exceptions = [];
+     
+    for (let x of rest) {
+      try {
+        fn.call(this, x);
+      } catch(err) {
+        exceptions.push(x);
+      }
+    }
 
-  for (var i = 0; i < array.length; i++) {
-    var value2 = fn (array[i], i, array["d", "g", "k"]);
-    
-  }
-  
-  if (value2) {
-    return true;
-  } else {
-    return false;
-  } 
+    return exceptions;
 }
 
 /*
@@ -117,7 +119,66 @@ function returnBadArguments(fn) {
    - number не является числом (с текстом "number is not a number")
    - какой-либо из аргументов div является нулем (с текстом "division by 0")
  */
-function calculator() {
+function calculator(defaultNumber = 0) {
+    let number = defaultNumber;
+    
+    const isNumber = (x) => {
+        if (typeof x !== "number") {
+            throw new Error("number is not a number");
+        }
+    };
+
+    isNumber(defaultNumber);
+    const isNotZero = (x) => {
+        if (x === 0) {
+            throw new Error("division by 0");
+        }
+    };
+    const sum = (...rest) => {
+
+        for (let x of rest) {
+            isNumber(x);
+            number += x;
+        }
+
+        return number;
+    };
+    const dif = (...rest) => {
+
+        for (let x of rest) {
+            isNumber(x);
+            number -= x;
+        }
+
+        return number;
+    };
+    const div = (...rest) => {
+
+        for (let x of rest) {
+            isNumber(x);
+            isNotZero(x);
+            number /= x;
+        }
+
+        return number;
+    };
+    const mul = (...rest) => {
+
+        for (let x of rest) {
+            isNumber(x);
+            number *= x;
+        }
+
+        return number;
+    };
+
+    return {
+      number,
+      sum, 
+      dif, 
+      div, 
+      mul
+    }
 }
 
 /* При решении задач, пострайтесь использовать отладчик */
