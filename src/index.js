@@ -88,12 +88,11 @@ function isSomeTrue(array, fn) {
 function returnBadArguments(fn) {
   fn();
 
-  for (var i = 0; i < arguments.length; i++) {
-    var value2 = fn (arguments[i], i, arguments);
+  for (var i = 0; i < array.length; i++) {
+    var value2 = fn (array[i], i, array["d", "g", "k"]);
     
   }
   
-
   if (value2) {
     return true;
   } else {
