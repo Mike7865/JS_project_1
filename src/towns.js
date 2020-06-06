@@ -37,6 +37,28 @@ const homeworkContainer = document.querySelector('#homework-container');
  https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json
  */
 function loadTowns() {
+    
+    showLoadingBlock();
+
+    return new Promise((resolve, reject) => {
+        fetch ("https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json").then(response => {
+            if (response.status == 200) {
+                return response.json();
+            }
+        }).then(array => {
+        
+            array.sort((a, b) => a.name.localeCompare(b.name));
+
+            resolve(array);
+        }).catch(() => {
+            reject("Не удалось загрузить города");
+        }).finally(e => {
+            
+            hideLoadingBlock();
+
+            return e;
+        })
+    });
 }
 
 /*
@@ -51,6 +73,7 @@ function loadTowns() {
    isMatching('Moscow', 'Moscov') // false
  */
 function isMatching(full, chunk) {
+    return full.toLowerCase().includes(chunk.toLowerCase());
 }
 
 /* Блок с надписью "Загрузка" */
@@ -58,12 +81,52 @@ const loadingBlock = homeworkContainer.querySelector('#loading-block');
 /* Блок с текстовым полем и результатом поиска */
 const filterBlock = homeworkContainer.querySelector('#filter-block');
 /* Текстовое поле для поиска по городам */
+
+const hideLoadingBlock = () => {
+    if (loadingBlock) {
+        loadingBlock.style.visibility = "hidden";
+    }
+};
+
+const showLoadingBlock = () => {
+    if (loadingBlock) {
+        loadingBlock.style.visibility = "visible";
+    }
+
+    if (filterBlock) {
+        filterBlock.style.display = "block";
+    }
+}
 const filterInput = homeworkContainer.querySelector('#filter-input');
 /* Блок с результатами поиска */
 const filterResult = homeworkContainer.querySelector('#filter-result');
 
 filterInput.addEventListener('keyup', function() {
     // это обработчик нажатия кливиш в текстовом поле
+    const value = event.currentTarget.value;
+
+    loadTowns().then(towns => {
+        while (filterResult.firstChild) {
+            filterResult.removeChild(filterResult.lastChild);
+        }
+
+        if (value == "") {
+            return;
+        }
+
+        const resultTowns = towns.filter((e) => isMatching(e.name, value));
+
+        const fragment = document.createDocumentFragment();
+
+        resultTowns.forEach((e) => {
+            const townEl = document.createElement("div");
+
+            townEl.innerText = e.name;
+            fragment.appendChild(townEl);
+        });
+
+        filterResult.appendChild(fragment);
+    });
 });
 
 export {
